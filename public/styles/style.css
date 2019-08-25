@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.recipe-card {
+    padding: 1rem;
+    margin: .5rem;
+    border: 1px solid black;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.recipe-title {
+    color: black;
+    font-size: 1.35rem; 
+}
+
+.recipe-description {
+    color: gray;
+}
+
+.recipe-ingredients {
+    color: gray;
+    font-size: .8rem;
+}

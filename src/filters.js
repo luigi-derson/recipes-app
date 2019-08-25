@@ -1,0 +1,4 @@
+const filters = {
+    searchTitle: '',
+    
+}

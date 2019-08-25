@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit recipe</title>
+</head>
+<body>
+    <header>
+        <h1>Recipes App</h1>
+        <div class="subtitle">Make your own recipes</div>
+    </header>
+          
+    <div class="recipe-info"><label for="title">Title:</label>
+        <input type="text">
+        <label for="steps">Steps:</label>
+        <textarea name="steps" id="recipe-steps" cols="30" rows="10"></textarea>
+    </div>
+    <div class="ingredients-list">
+
+    </div>
+    <input type="text" name="ingredient" id="add-ingredient">
+    <button>Add ingredient</button>
+    <button>Save</button>
+    <div class="remove-recipe">
+        <span>Danger zone</span>
+        <button>Remove recipe</button>
+    </div>
+    
+    <script src="scripts/edit-bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "recipes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "input.js",
+  "scripts": {
+    "dev-server": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "Luigi",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.2.1",
+    "moment": "^2.24.0",
+    "regenerator-runtime": "^0.13.3",
+    "uuid": "^3.3.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
