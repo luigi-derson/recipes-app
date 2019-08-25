@@ -1,13 +1,13 @@
 {
   "name": "recipes",
   "version": "1.0.0",
-  "description": "",
-  "main": "input.js",
+  "description": "App for recipes",
+  "main": "index.js",
   "scripts": {
     "dev-server": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
-  "author": "Luigi",
+  "author": "Luigi Derson",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.5.5",

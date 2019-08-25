@@ -11,9 +11,12 @@
         <h1>Recipes App</h1>
         <div class="subtitle">Make your own recipes</div>
     </header>
+
+    <a href="./index.html">Go back</a>
           
-    <div class="recipe-info"><label for="title">Title:</label>
-        <input type="text" id="recipe-title">
+    <div class="recipe-info">
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="recipe-title">
         <label for="steps">Steps:</label>
         <textarea name="steps" id="recipe-steps" cols="30" rows="10"></textarea>
     </div>
@@ -22,10 +25,10 @@
     </div>
     <input type="text" name="ingredient" id="input-ingredient">
     <button id="add-ingredient">Add ingredient</button>
-    <button>Save</button>
+    <!-- <button>Save</button> -->
     <div class="remove-recipe">
         <span>Danger zone</span>
-        <button>Remove recipe</button>
+        <button id="remove-recipe">Remove recipe</button>
     </div>
     
     <script src="scripts/edit-bundle.js"></script>

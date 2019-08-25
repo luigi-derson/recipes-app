@@ -1,4 +1,5 @@
 import uuid from 'uuid'
+import { generateRecipeToDOM } from './views'
 
 let recipes = []
 const ingredients = []
