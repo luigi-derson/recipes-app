@@ -1,3 +1,5 @@
-import { loadRecipes, getRecipes, saveRecipes, createRecipe, removeRecipe, addIngredient } from './recipes'
+import { loadRecipes, getRecipes, saveRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient } from './recipes'
 
-addIngredient('second')
+//addIngredient()
+removeIngredient('one')
+loadRecipes()

@@ -42,8 +42,20 @@ const removeRecipe = (id) => {
 
 const addIngredient = (ingredient) => {
     const recipeId = location.hash.substring(1)
-    const index = recipes.findIndex(recipe => recipe.id === recipeId )
+    const index = recipes.findIndex(recipe => recipe.id === recipeId)
     recipes[index].ingredients.push(ingredient)
+    saveRecipes()
+}
+
+const toggleIngredient = () => {
+
+}
+
+const removeIngredient = (ingredient) => {
+    const recipeId = location.hash.substring(1)
+    const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeId)
+    const ingredientIndex = recipes[recipeIndex].ingredients.findIndex(ingr => ingr === ingredient)
+    recipes[recipeIndex].ingredients.splice(ingredientIndex,1)
     saveRecipes()
 }
 
@@ -51,4 +63,4 @@ const addIngredient = (ingredient) => {
 loadRecipes()
 
 
-export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient }
+export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient }

@@ -1,4 +1,3 @@
 const filters = {
-    searchTitle: '',
-    
+    searchTitle: ''
 }
