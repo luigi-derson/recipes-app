@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { generateRecipeToDOM } from './views'
+import { generateRecipeToDOM, renderIngredients, renderRecipes } from './views'
 
 let recipes = []
 const ingredients = []
@@ -24,8 +24,8 @@ const getRecipes = () => recipes
 const createRecipe = () => {
     const id = uuid()
     recipes.push({
-        title: 'title',
-        steps: 'recipe steps',
+        title: '',
+        steps: '',
         id: id,
         ingredients: []
     })
@@ -43,25 +43,37 @@ const removeRecipe = (id) => {
 
 const addIngredient = (ingredient) => {
     const recipeId = location.hash.substring(1)
-    const index = recipes.findIndex(recipe => recipe.id === recipeId)
-    recipes[index].ingredients.push(ingredient)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
+    const ingredientId = uuid()
+    recipe.ingredients.push({
+        name: ingredient,
+        itHas: false,
+        id: ingredientId
+    })
     saveRecipes()
+    renderIngredients(recipe)
 }
 
-const toggleIngredient = () => {
-
-}
-
-const removeIngredient = (ingredient) => {
+const toggleIngredient = (id) => {
     const recipeId = location.hash.substring(1)
-    const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeId)
-    const ingredientIndex = recipes[recipeIndex].ingredients.findIndex(ingr => ingr === ingredient)
-    recipes[recipeIndex].ingredients.splice(ingredientIndex,1)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
+    const ingredient = recipe.ingredients.find(ingred => ingred.id === id)
+    ingredient.itHas = !ingredient.itHas
     saveRecipes()
+    renderIngredients(recipe)
+}
+
+const removeIngredient = (id) => {
+    const recipeId = location.hash.substring(1)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
+    const ingredientIndex = recipe.ingredients.findIndex(ingred => ingred.id === id)
+    recipe.ingredients.splice(ingredientIndex,1)
+    saveRecipes()
+    renderIngredients(recipe)
 }
 
 
 loadRecipes()
 
 
-export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient }
+export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient, toggleIngredient }

@@ -1,17 +1,27 @@
 import { loadRecipes, getRecipes, saveRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient } from './recipes'
+import { loadEditPage, renderIngredients } from './views'
 
 const recipeTitle = document.querySelector('#recipe-title')
 const recipeSteps = document.querySelector('#recipe-steps')
-const recipeIngredients = document.querySelector('#ingredients-list')
-const inputIngredient = document.querySelector('#input-ingredient')
-const addIngredientButton = document.querySelector('#button-ingredient')
+const addIngredientForm = document.querySelector('#add-ingredient')
 const removeRecipeButton = document.querySelector('#remove-recipe')
 
 const recipeId = location.hash.substring(1)
+const recipe = loadEditPage(recipeId)
 
-const recipes = getRecipes()
-let recipe = recipes.find((recipe) => recipe.id === recipeId)
+recipeTitle.addEventListener('input', (e) => {
+    recipe.title = e.target.value
+    saveRecipes()
+})
 
-recipeTitle.value = recipe.title
-recipeSteps.value = recipe.steps
-recipeIngredients.textContent = recipe.ingredients
+recipeSteps.addEventListener('input', (e) => {
+    recipe.steps = e.target.value
+    saveRecipes()
+})
+
+addIngredientForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const ingredient = e.target.elements.ingredient.value
+    addIngredient(ingredient)
+    e.target.elements.ingredient.value = ''
+})
