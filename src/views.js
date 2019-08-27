@@ -1,13 +1,22 @@
-import { loadRecipes, getRecipes, toggleIngredient, removeIngredient, saveRecipes } from './recipes'
+import { getRecipes, toggleIngredient, removeIngredient } from './recipes'
+import { getFilters } from './filters'
 
 
 const renderRecipes = () => {
     const recipesList = document.querySelector('#recipes-list')
+    const filters = getFilters()
     const recipes = getRecipes()
+
+    const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
     recipesList.innerHTML = ''
-    recipes.forEach((recipe) => {
-        recipesList.appendChild(generateRecipeToDOM(recipe))
-    })
+    if (filteredRecipes.length > 0) {
+        filteredRecipes.forEach((recipe) => {
+            recipesList.appendChild(generateRecipeToDOM(recipe))
+        })
+    } else {
+        recipesList.innerHTML = 'There are not recipes to show, create a new one.'
+    }
+    
 }
 
 const renderIngredients = (recipe) => {
@@ -28,7 +37,7 @@ const generateRecipeToDOM = (recipe) => {
     const recipeWrap = document.createElement('a')
     const recipeCard = document.createElement('div')
     const recipeTitle = document.createElement('span')
-    const recipeSteps = document.createElement('p')
+    const recipeDescription = document.createElement('p')
     const recipeIngredients = document.createElement('div')
 
     recipeCard.classList.add('recipe-card')
@@ -37,9 +46,9 @@ const generateRecipeToDOM = (recipe) => {
     recipeTitle.classList.add('recipe-title')
     recipeCard.appendChild(recipeTitle)
 
-    recipeSteps.textContent = recipe.steps
-    recipeSteps.classList.add('recipe-steps')
-    recipeCard.appendChild(recipeSteps)
+    recipeDescription.textContent = recipe.description
+    recipeDescription.classList.add('recipe-description')
+    recipeCard.appendChild(recipeDescription)
 
     recipeIngredients.textContent = `You have ${recipe.ingredients.length} ingredients`
     recipeIngredients.classList.add('recipe-ingredients')
@@ -47,7 +56,7 @@ const generateRecipeToDOM = (recipe) => {
 
     recipeWrap.appendChild(recipeCard)
     recipeWrap.setAttribute('href', `/edit.html#${recipe.id}`)
-
+    
     return recipeWrap
 }
 
@@ -70,7 +79,7 @@ const generateIngredientsToDOM = (ingredient) => {
     removeEl.textContent = 'remove'
     containerEl.appendChild(removeEl)
     removeEl.addEventListener('click', () => {
-        removeIngredient(ingredient.id)
+        removeIngredient(ingredient.name)
     })
 
     return containerEl 
@@ -78,12 +87,18 @@ const generateIngredientsToDOM = (ingredient) => {
 
 const loadEditPage = (recipeId) => {
     const recipeTitle = document.querySelector('#recipe-title')
+    const recipeDescription = document.querySelector('#recipe-description')
     const recipeSteps = document.querySelector('#recipe-steps')
 
     const recipes = getRecipes()
     const recipe = recipes.find((recipe) => recipe.id === recipeId)
 
+    if (!recipe) {
+        location.assign('/index.html')
+    }
+
     recipeTitle.value = recipe.title
+    recipeDescription.value = recipe.description
     recipeSteps.value = recipe.steps
 
     renderIngredients(recipe)
