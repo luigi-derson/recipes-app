@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { generateRecipeToDOM, renderIngredients, renderRecipes, loadEditPage } from './views'
+import { generateRecipeToDOM, renderIngredients, renderRecipes, loadEditPage, renderSteps } from './views'
 
 let recipes = []
 
@@ -27,7 +27,7 @@ const createRecipe = () => {
     recipes.push({
         title: '',
         description: '',
-        steps: '',
+        steps: [],
         id: id,
         ingredients: []
     })
@@ -44,9 +44,15 @@ const removeRecipe = (id) => {
     } 
 }
 
-const addIngredient = (ingredient) => {
-    const recipeId = location.hash.substring(1)
-    const recipe = recipes.find(recipe => recipe.id === recipeId)
+const addStep = (recipe, step) => {
+    if (step.length > 0) {
+        recipe.steps.push(step)
+        saveRecipes()
+        loadEditPage(recipe.id)
+    }
+}
+
+const addIngredient = (recipe, ingredient) => {
     const ingredientExist = recipe.ingredients.find(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
 
     if (ingredient.length > 0 && !ingredientExist) {
@@ -56,20 +62,19 @@ const addIngredient = (ingredient) => {
             quantity: 0
         })
         saveRecipes()
-        renderIngredients(recipe)
+        loadEditPage(recipe.id)
     } else {
         ingredientExist.quantity += 1
         saveRecipes()
     }
 }
 
-const toggleIngredient = (id) => {
+const toggleIngredient = (ingredient) => {
     const recipeId = location.hash.substring(1)
     const recipe = recipes.find(recipe => recipe.id === recipeId)
-    const ingredient = recipe.ingredients.find(ingred => ingred.id === id)
-    ingredient.itHas = !ingredient.itHas
+    const ingredientEl = recipe.ingredients.find(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
+    ingredientEl.itHas = !ingredientEl.itHas
     saveRecipes()
-    renderIngredients(recipe)
 }
 
 const removeIngredient = (ingredient) => {
@@ -80,9 +85,9 @@ const removeIngredient = (ingredient) => {
     recipe.ingredients.splice(ingredientIndex, 1)
     
     saveRecipes()
-    renderIngredients(recipe)
+    loadEditPage(recipe.id)
 }
 
 loadRecipes()
 
-export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient, toggleIngredient }
+export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient, toggleIngredient, addStep }

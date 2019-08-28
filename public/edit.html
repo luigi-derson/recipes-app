@@ -19,15 +19,18 @@
         <input type="text" name="title" id="recipe-title">
         <label for="description">Description:</label>
         <textarea name="description" id="recipe-description"></textarea>
-        <label for="steps">Steps:</label>
-        <textarea name="steps" id="recipe-steps" cols="30" rows="10"></textarea>
+        <div class="container">
+            <label for="steps">Steps:</label>
+            <ol id="recipe-steps"></ol>
+        </div>
+        <form id="add-step">
+            <input type="text" placeholder="Add new step" class="add-step" name="step">
+        </form> 
     </div>
-    <div class="ingredients-list" id="ingredients-list">
-
-    </div>
+    <div class="ingredients-list" id="ingredients-list"></div>
     <form id="add-ingredient">
-        <input type="text" name="ingredient">
-        <button>Add ingredient</button>
+        <input type="text" name="ingredient" placeholder="Add ingredient">
+        <button>+</button>
     </form>
     <!-- <button>Save</button> -->
     <div class="remove-recipe">

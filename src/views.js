@@ -10,13 +10,23 @@ const renderRecipes = () => {
     const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
     recipesList.innerHTML = ''
     if (filteredRecipes.length > 0) {
-        filteredRecipes.forEach((recipe) => {
-            recipesList.appendChild(generateRecipeToDOM(recipe))
-        })
+        filteredRecipes.forEach(recipe => recipesList.appendChild(generateRecipeToDOM(recipe)))
     } else {
         recipesList.innerHTML = 'There are not recipes to show, create a new one.'
     }
     
+}
+
+const renderSteps = (recipe) => {
+    const orderedList = document.querySelector('#recipe-steps')
+
+    orderedList.innerHTML = ''
+
+    if (recipe.steps.length > 0) {
+        recipe.steps.forEach(step => orderedList.appendChild(generateStepToDOM(step)))
+    } else {
+        orderedList.innerHTML = 'No steps yet'
+    }
 }
 
 const renderIngredients = (recipe) => {
@@ -25,9 +35,7 @@ const renderIngredients = (recipe) => {
     recipeIngredients.innerHTML = ''
     
     if (recipe.ingredients.length > 0) {
-        recipe.ingredients.forEach((ingredient) => {
-            recipeIngredients.appendChild(generateIngredientsToDOM(ingredient))
-        })
+        recipe.ingredients.forEach(ingredient => recipeIngredients.appendChild(generateIngredientsToDOM(ingredient)))
     } else {
         recipeIngredients.innerHTML = 'No ingredients yet, add them!'
     }
@@ -60,6 +68,16 @@ const generateRecipeToDOM = (recipe) => {
     return recipeWrap
 }
 
+const generateStepToDOM = (step) => {
+    const stepWrapper = document.createElement('li')
+    const stepText = document.createTextNode('p')
+
+    stepText.textContent = step
+    stepWrapper.appendChild(stepText)
+
+    return stepWrapper
+}
+
 const generateIngredientsToDOM = (ingredient) => {
     const containerEl = document.createElement('div')
     const checkEl = document.createElement('input')
@@ -70,7 +88,7 @@ const generateIngredientsToDOM = (ingredient) => {
     checkEl.checked = ingredient.itHas
     containerEl.appendChild(checkEl)
     checkEl.addEventListener('change', () => {
-        toggleIngredient(ingredient.id)
+        toggleIngredient(ingredient.name)
     })
 
     textEl.textContent = ingredient.name
@@ -88,7 +106,6 @@ const generateIngredientsToDOM = (ingredient) => {
 const loadEditPage = (recipeId) => {
     const recipeTitle = document.querySelector('#recipe-title')
     const recipeDescription = document.querySelector('#recipe-description')
-    const recipeSteps = document.querySelector('#recipe-steps')
 
     const recipes = getRecipes()
     const recipe = recipes.find((recipe) => recipe.id === recipeId)
@@ -99,12 +116,12 @@ const loadEditPage = (recipeId) => {
 
     recipeTitle.value = recipe.title
     recipeDescription.value = recipe.description
-    recipeSteps.value = recipe.steps
 
+    renderSteps(recipe)
     renderIngredients(recipe)
 
     return recipe
 }
 
 
-export { generateRecipeToDOM, renderRecipes, generateIngredientsToDOM, loadEditPage, renderIngredients }
+export { renderRecipes, loadEditPage, renderIngredients, renderSteps }
