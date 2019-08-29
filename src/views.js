@@ -7,12 +7,14 @@ const renderRecipes = () => {
     const filters = getFilters()
     const recipes = getRecipes()
 
+    recipesList.innerHTML = ''
+
     const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
     recipesList.innerHTML = ''
     if (filteredRecipes.length > 0) {
         filteredRecipes.forEach(recipe => recipesList.appendChild(generateRecipeToDOM(recipe)))
     } else {
-        recipesList.innerHTML = 'There are not recipes to show, create a new one.'
+        recipesList.innerHTML = 'There are not recipes to show, create a new one!'
     }
     
 }
@@ -48,17 +50,34 @@ const generateRecipeToDOM = (recipe) => {
     const recipeDescription = document.createElement('p')
     const recipeIngredients = document.createElement('div')
 
+    const ingredientsWeHave = recipe.ingredients.filter(ingredient => ingredient.itHas === true)
+    const ingredientsCounter = ingredientsWeHave.length !== recipe.ingredients.length ? `You have ${ingredientsWeHave.length} of ${recipe.ingredients.length} ingredients` : 'You have all the ingredients'
+
     recipeCard.classList.add('recipe-card')
 
     recipeTitle.textContent = recipe.title
     recipeTitle.classList.add('recipe-title')
     recipeCard.appendChild(recipeTitle)
 
-    recipeDescription.textContent = recipe.description
+    const maxChAllowed = 68 //It depends on design
+    if (recipe.description.length > maxChAllowed) {
+        let result = ''
+        for (let i = 0; i < 68; i++) {
+            result += recipe.description[i]
+        }
+        recipeDescription.textContent = `${result}...`
+    } else {
+        recipeDescription.textContent = recipe.description
+    }
+    //recipeDescription.textContent = recipe.description
     recipeDescription.classList.add('recipe-description')
     recipeCard.appendChild(recipeDescription)
 
-    recipeIngredients.textContent = `You have ${recipe.ingredients.length} ingredients`
+    if (ingredientsWeHave.length > 0) {
+        recipeIngredients.textContent = ingredientsCounter
+    } else {
+        recipeIngredients.textContent = 'You don\'t have any ingredient yet'
+    }
     recipeIngredients.classList.add('recipe-ingredients')
     recipeCard.appendChild(recipeIngredients)
 

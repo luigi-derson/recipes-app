@@ -3,9 +3,9 @@ const filters = {
     searchTitle: '',
 }
 
-const setFilters = (updates) => {
-    if (typeof updates === 'string') {
-        filters.searchTitle = updates.searchTitle
+const setFilters = (update) => {
+    if (typeof update.searchTitle === 'string') {
+        filters.searchTitle = update.searchTitle
     }
     
 }
