@@ -25,10 +25,13 @@ const getRecipes = () => recipes
 const createRecipe = () => {
     const id = uuid()
     recipes.push({
+        id: id,
         title: '',
         description: '',
+        time: '',
+        difficulty: '',
+        rate: '',
         steps: [],
-        id: id,
         ingredients: []
     })
     saveRecipes()
@@ -50,6 +53,36 @@ const addStep = (recipe, step) => {
         saveRecipes()
         loadEditPage(recipe.id)
     }
+}
+
+const editSteps = (recipe, parent, button) => {
+    const saveStepsButton = document.createElement('button')
+    const recipeSteps = document.querySelectorAll('li')
+
+    recipeSteps.forEach(step => step.setAttribute('contenteditable', 'true'))
+    saveStepsButton.textContent = 'Save'
+    parent.appendChild(saveStepsButton)
+
+    button.disabled = true
+
+    saveStepsButton.addEventListener('click', () => {
+        recipe.steps.forEach((_, i, arr) => arr[i] = recipeSteps[i].textContent)
+        saveRecipes()
+        parent.removeChild(parent.lastChild)
+        button.disabled = false
+        recipeSteps.forEach(step => step.removeAttribute('contenteditable'))
+        loadEditPage(recipe.id)
+    }) 
+}
+
+const removeStep = (step) => {
+    const recipeId = location.hash.substring(1)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
+    const stepIndex = recipe.steps.findIndex(stp=> stp.toLowerCase() === step.toLowerCase())
+    recipe.steps.splice(stepIndex, 1)
+
+    saveRecipes()
+    loadEditPage(recipe.id)
 }
 
 const addIngredient = (recipe, ingredient) => {
@@ -90,4 +123,4 @@ const removeIngredient = (ingredient) => {
 
 loadRecipes()
 
-export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient, toggleIngredient, addStep }
+export { loadRecipes, saveRecipes, getRecipes, createRecipe, removeRecipe, addIngredient, removeIngredient, toggleIngredient, addStep, editSteps, removeStep }

@@ -1,15 +1,13 @@
-import { getRecipes, toggleIngredient, removeIngredient } from './recipes'
+import { getRecipes, toggleIngredient, removeIngredient, removeStep } from './recipes'
 import { getFilters } from './filters'
 
 
 const renderRecipes = () => {
     const recipesList = document.querySelector('#recipes-list')
-    const filters = getFilters()
+    const {searchTitle} = getFilters()
     const recipes = getRecipes()
+    const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchTitle.toLowerCase()))
 
-    recipesList.innerHTML = ''
-
-    const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(filters.searchTitle.toLowerCase()))
     recipesList.innerHTML = ''
     if (filteredRecipes.length > 0) {
         filteredRecipes.forEach(recipe => recipesList.appendChild(generateRecipeToDOM(recipe)))
@@ -20,14 +18,19 @@ const renderRecipes = () => {
 }
 
 const renderSteps = (recipe) => {
-    const orderedList = document.querySelector('#recipe-steps')
+    const orderedList = document.querySelector('#recipe-steps'),
+    editStepsButton = document.querySelector('#edit-steps-button')
 
     orderedList.innerHTML = ''
 
     if (recipe.steps.length > 0) {
-        recipe.steps.forEach(step => orderedList.appendChild(generateStepToDOM(step)))
+        recipe.steps.forEach((step) => {
+            orderedList.appendChild(generateStepToDOM(step))
+        })
+        editStepsButton.style.display = ''
     } else {
         orderedList.innerHTML = 'No steps yet'
+        editStepsButton.style.display = 'none'
     }
 }
 
@@ -60,6 +63,7 @@ const generateRecipeToDOM = (recipe) => {
     recipeCard.appendChild(recipeTitle)
 
     const maxChAllowed = 68 //It depends on design
+
     if (recipe.description.length > maxChAllowed) {
         let result = ''
         for (let i = 0; i < 68; i++) {
@@ -69,7 +73,7 @@ const generateRecipeToDOM = (recipe) => {
     } else {
         recipeDescription.textContent = recipe.description
     }
-    //recipeDescription.textContent = recipe.description
+
     recipeDescription.classList.add('recipe-description')
     recipeCard.appendChild(recipeDescription)
 
@@ -88,13 +92,18 @@ const generateRecipeToDOM = (recipe) => {
 }
 
 const generateStepToDOM = (step) => {
-    const stepWrapper = document.createElement('li')
-    const stepText = document.createTextNode('p')
+    const stepElement = document.createElement('li')
+    const remove = document.createElement('div')
+    remove.textContent = 'x'
+    //remove.setAttribute('disabled', 'true')
+    stepElement.textContent = step
+    stepElement.appendChild(remove)
 
-    stepText.textContent = step
-    stepWrapper.appendChild(stepText)
+    remove.addEventListener('click', () => {
+        removeStep(step)
+    })
 
-    return stepWrapper
+    return stepElement
 }
 
 const generateIngredientsToDOM = (ingredient) => {

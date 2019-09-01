@@ -1,14 +1,15 @@
-import { loadRecipes, saveRecipes, removeRecipe, addIngredient, addStep } from './recipes'
+import { loadRecipes, saveRecipes, removeRecipe, addIngredient, addStep, editSteps } from './recipes'
 import { loadEditPage } from './views'
 
-const recipeTitle = document.querySelector('#recipe-title')
-const recipeDescription = document.querySelector('#recipe-description')
-const recipeSteps = document.querySelector('#add-step')
-const addIngredientForm = document.querySelector('#add-ingredient')
-const removeRecipeButton = document.querySelector('#remove-recipe')
-const recipeId = location.hash.substring(1)
-
-const recipe = loadEditPage(recipeId)
+const recipeTitle = document.querySelector('#recipe-title'),
+    recipeInfo = document.querySelector('#recipe-info'),
+    recipeDescription = document.querySelector('#recipe-description'),
+    recipeSteps = document.querySelector('#add-step'),
+    editStepsButton = document.querySelector('#edit-steps-button'),
+    addIngredientForm = document.querySelector('#add-ingredient'),
+    removeRecipeButton = document.querySelector('#remove-recipe'),
+    recipeId = location.hash.substring(1),
+    recipe = loadEditPage(recipeId)
 
 recipeTitle.addEventListener('input', (e) => {
     recipe.title = e.target.value
@@ -26,6 +27,12 @@ recipeSteps.addEventListener('submit', (e) => {
     addStep(recipe, step)
 
     e.target.elements.step.value = ''
+})
+
+editStepsButton.addEventListener('click', () => {
+    if (recipe.steps.length > 0) {
+        editSteps(recipe, recipeInfo, editStepsButton)
+    }   
 })
 
 addIngredientForm.addEventListener('submit', (e) => {

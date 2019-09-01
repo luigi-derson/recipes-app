@@ -14,18 +14,19 @@
 
     <a href="./index.html">Go back</a>
           
-    <div class="recipe-info">
+    <div class="recipe-info" id="recipe-info">
         <label for="title">Title:</label>
         <input type="text" name="title" id="recipe-title">
         <label for="description">Description:</label>
         <textarea name="description" id="recipe-description"></textarea>
-        <div class="container">
+        <div class="container" id="steps-container">
             <label for="steps">Steps:</label>
             <ol id="recipe-steps"></ol>
         </div>
         <form id="add-step">
             <input type="text" placeholder="Add new step" class="add-step" name="step">
         </form> 
+        <button id="edit-steps-button">Edit steps</button>
     </div>
     <div class="ingredients-list" id="ingredients-list"></div>
     <form id="add-ingredient">
