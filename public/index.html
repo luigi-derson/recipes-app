@@ -4,28 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Recipes App</title>
+  <title>Reciper</title>
   <link rel="stylesheet" href="./styles/style.css">
+  <script src="https://kit.fontawesome.com/a7d174b5ec.js"></script>
   <link rel="icon" href="./images/favicon.png">
 </head>
 <body>
-  <header>
-      <h1>Recipes App</h1>
-      <div class="subtitle">Make your own recipes</div>
-  </header>
-
-  <input type="text" placeholder="filter recipes" id="filter-recipes">
-  <div id="recipes-list" class="recipes-list">
-    <!-- Generated recipes card here -->
-    <!--   <a href="#">
-      <div class="recipe-card">
-          <span class="recipe-title">Recipe Title</span>
-          <p class="recipe-steps">This is the recipe steps</p>
-          <div class="recipe-ingredients">You have x ingredients</div>
+  <div class="site-content">
+    <header>
+      <nav class="navbar container">
+        <a href="index.html" class="title">Reciper</a>
+        <input type="text" placeholder="&#xf002; Filter recipes" id="filter-recipes" class="filter-recipes">
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+          <div id="recipes-list" class="recipes-list">
+          <!-- Generated recipes card here -->
+          </div>
+          <button id="add-recipe" class="add-recipe">New recipe <i class="fas fa-plus"></i></button>      
       </div>
-    </a> -->
+    </main>  
   </div>
-  <button id="add-recipe">New recipe</button>
 
   <script src="scripts/index-bundle.js"></script>
 </body>

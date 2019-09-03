@@ -52,6 +52,7 @@ const generateRecipeToDOM = (recipe) => {
     const recipeTitle = document.createElement('span')
     const recipeDescription = document.createElement('p')
     const recipeIngredients = document.createElement('div')
+    const recipeSteps = document.createElement('span')
 
     const ingredientsWeHave = recipe.ingredients.filter(ingredient => ingredient.itHas === true)
     const ingredientsCounter = ingredientsWeHave.length !== recipe.ingredients.length ? `You have ${ingredientsWeHave.length} of ${recipe.ingredients.length} ingredients` : 'You have all the ingredients'
@@ -59,30 +60,34 @@ const generateRecipeToDOM = (recipe) => {
     recipeCard.classList.add('recipe-card')
 
     recipeTitle.textContent = recipe.title
-    recipeTitle.classList.add('recipe-title')
+    recipeTitle.classList.add('recipe-info-title')
     recipeCard.appendChild(recipeTitle)
 
-    const maxChAllowed = 68 //It depends on design
+    const maxChAllowed = 110 //It depends on design
 
     if (recipe.description.length > maxChAllowed) {
         let result = ''
-        for (let i = 0; i < 68; i++) {
+        for (let i = 0; i < maxChAllowed; i++) {
             result += recipe.description[i]
         }
         recipeDescription.textContent = `${result}...`
     } else {
         recipeDescription.textContent = recipe.description
     }
-
-    recipeDescription.classList.add('recipe-description')
+    recipeDescription.classList.add('recipe-info-description')
     recipeCard.appendChild(recipeDescription)
+
+    recipeSteps.textContent = `Steps: ${recipe.steps.length}`
+    recipeSteps.classList.add('recipe-info-steps')
+    recipeCard.appendChild(recipeSteps)
+
 
     if (ingredientsWeHave.length > 0) {
         recipeIngredients.textContent = ingredientsCounter
     } else {
         recipeIngredients.textContent = 'You don\'t have any ingredient yet'
     }
-    recipeIngredients.classList.add('recipe-ingredients')
+    recipeIngredients.classList.add('recipe-info-ingredients')
     recipeCard.appendChild(recipeIngredients)
 
     recipeWrap.appendChild(recipeCard)

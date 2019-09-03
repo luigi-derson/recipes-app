@@ -5,21 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit recipe</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://kit.fontawesome.com/a7d174b5ec.js"></script>
+    <link rel="icon" href="./images/favicon.png">
 </head>
 <body>
     <header>
-        <h1>Recipes App</h1>
-        <div class="subtitle">Make your own recipes</div>
+        <nav class="navbar container">
+          <a href="index.html" class="title">Reciper</a>
+          <span>Edit recipe</span>
+        </nav>
     </header>
 
-    <a href="./index.html">Go back</a>
-          
-    <div class="recipe-info" id="recipe-info">
+    <div class="menu container">
+        <a href="./index.html">Home <i class="fas fa-home"></i></a>
+    </div>
+
+    <div class="recipe-info container" id="recipe-info">
         <label for="title">Title:</label>
         <input type="text" name="title" id="recipe-title">
         <label for="description">Description:</label>
         <textarea name="description" id="recipe-description"></textarea>
-        <div class="container" id="steps-container">
+        <div id="steps-container">
             <label for="steps">Steps:</label>
             <ol id="recipe-steps"></ol>
         </div>
@@ -28,13 +35,15 @@
         </form> 
         <button id="edit-steps-button">Edit steps</button>
     </div>
-    <div class="ingredients-list" id="ingredients-list"></div>
-    <form id="add-ingredient">
-        <input type="text" name="ingredient" placeholder="Add ingredient">
-        <button>+</button>
-    </form>
-    <!-- <button>Save</button> -->
-    <div class="remove-recipe">
+    <div class="recipe-ingredients container">
+        <div class="ingredients-list" id="ingredients-list"></div>
+        <form id="add-ingredient">
+            <input type="text" name="ingredient" placeholder="Add ingredient">
+            <button>+</button>
+        </form>
+    </div>
+
+    <div class="remove-recipe container">
         <span>Danger zone</span>
         <button id="remove-recipe">Remove recipe</button>
     </div>
