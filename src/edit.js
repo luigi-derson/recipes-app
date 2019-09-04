@@ -3,9 +3,7 @@ import { loadEditPage } from './views'
 
 const recipeTitle = document.querySelector('#recipe-title'),
     recipeDescription = document.querySelector('#recipe-description'),
-    recipeStepsContainer = document.querySelector('#recipe-steps-container'),
     recipeSteps = document.querySelector('#add-step'),
-    editStepsButton = document.querySelector('#edit-steps-button'),
     addIngredientForm = document.querySelector('#add-ingredient'),
     removeRecipeButton = document.querySelector('#remove-recipe'),
     recipeId = location.hash.substring(1),
@@ -42,11 +40,11 @@ recipeSteps.addEventListener('submit', (e) => {
     e.target.elements.step.value = ''
 })
 
-editStepsButton.addEventListener('click', () => {
+/* editStepsButton.addEventListener('click', () => {
     if (recipe.steps.length > 0) {
-        editSteps(recipe, recipeStepsContainer, editStepsButton)
+        editSteps(recipe, recipeStepsContainer)
     }
-})
+}) */
 
 addIngredientForm.addEventListener('submit', (e) => {
     e.preventDefault()

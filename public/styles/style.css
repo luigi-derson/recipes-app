@@ -85,6 +85,12 @@ input:focus, select:focus, textarea:focus, button:focus {
     box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.20);
 }
 
+.recipe-card:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
+}
+
 .recipe-info-title {
     color: black;
     font-size: 1.85rem;
@@ -230,7 +236,7 @@ label {
     display: flex;
     padding: .8rem 0;
     font-size: 1.125rem;
-    align-items: flex-start;
+    align-items: space-between;
 }
 
 .step-item::before {
@@ -245,14 +251,18 @@ label {
     max-width: 85%;
 }
 
-.remove-ingredient, .remove-step {
+.remove-ingredient, .remove-step, .edit-step, .save-step {
     margin-left: auto;
     cursor: pointer;
     color: gray;
 }
 
+.remove-ingredient:hover, .remove-step:hover {
+    color: red;
+}
+
 .step-text {
-    max-width: 85%;
+    width: 80%;
 }
 
 /* Start checkbox style */

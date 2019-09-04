@@ -1,4 +1,4 @@
-import { getRecipes, toggleIngredient, removeIngredient, removeStep } from './recipes'
+import { getRecipes, toggleIngredient, removeIngredient, removeStep, editSteps } from './recipes'
 import { getFilters } from './filters'
 
 
@@ -24,7 +24,6 @@ const renderRecipes = () => {
 
 const renderSteps = (recipe) => {
     const orderedList = document.querySelector('#recipe-steps'),
-    editStepsButton = document.querySelector('#edit-steps-button'),
     noSteps = document.createElement('span')
 
     noSteps.textContent = 'Add the recipe\'s steps'
@@ -36,10 +35,8 @@ const renderSteps = (recipe) => {
         recipe.steps.forEach((step) => {
             orderedList.appendChild(generateStepToDOM(step))
         })
-        editStepsButton.style.display = ''
     } else {
         orderedList.appendChild(noSteps)
-        editStepsButton.style.display = 'none'
     }
 }
 
@@ -119,11 +116,24 @@ const generateRecipeToDOM = (recipe) => {
 const generateStepToDOM = (step) => {
     const stepElement = document.createElement('li'),
     stepText = document.createElement('span'),
+    editStep = document.createElement('i'),
+    saveStep = document.createElement('i'),
     remove = document.createElement('i')
     
     stepText.textContent = step
     stepText.classList.add('step-text')
     stepElement.appendChild(stepText)
+
+    editStep.classList.add('edit-step', 'far', 'fa-edit')
+    stepElement.appendChild(editStep)
+    editStep.addEventListener('click', () => {
+        editSteps(stepElement, editStep, saveStep)
+    })
+
+    saveStep.classList.add('save-step', 'far', 'fa-save')
+    stepElement.appendChild(saveStep, step)
+
+    saveStep.style.display = 'none'
 
     remove.classList.add('remove-step', 'far', 'fa-trash-alt')
     stepElement.appendChild(remove)

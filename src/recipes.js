@@ -55,24 +55,23 @@ const addStep = (recipe, step) => {
     }
 }
 
-const editSteps = (recipe, parent, button) => {
-    const saveStepsButton = document.createElement('button')
-    const recipeSteps = document.querySelectorAll('li')
+const editSteps = (li, editButton, saveButton) => {
+    const recipeId = location.hash.substring(1)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
+    const index = recipe.steps.findIndex(step => step === li.textContent)
 
-    recipeSteps.forEach(step => step.setAttribute('contenteditable', 'true'))
-    saveStepsButton.textContent = 'Save'
-    parent.appendChild(saveStepsButton)
+    li.setAttribute('contenteditable', 'true')
+    editButton.style.display = 'none'
+    saveButton.style.display = ''
 
-    button.disabled = true
-
-    saveStepsButton.addEventListener('click', () => {
-        recipe.steps.forEach((_, i, arr) => arr[i] = recipeSteps[i].textContent)
+    saveButton.addEventListener('click', () => {
+        recipe.steps[index] = li.textContent
         saveRecipes()
-        parent.removeChild(parent.lastChild)
-        button.disabled = false
-        recipeSteps.forEach(step => step.removeAttribute('contenteditable'))
+        li.removeAttribute('contenteditable')
+        saveButton.style.display = 'none'
+        editButton.style.display = ''
         loadEditPage(recipe.id)
-    }) 
+    })
 }
 
 const removeStep = (step) => {
