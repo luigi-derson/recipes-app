@@ -13,41 +13,56 @@
     <header>
         <nav class="navbar container">
           <a href="index.html" class="title">Reciper</a>
-          <span>Edit recipe</span>
+          <span>Recipe information</span>
         </nav>
     </header>
 
     <div class="menu container">
-        <a href="./index.html">Home <i class="fas fa-home"></i></a>
+        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
     </div>
 
     <div class="recipe-info container" id="recipe-info">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="recipe-title">
-        <label for="description">Description:</label>
-        <textarea name="description" id="recipe-description"></textarea>
-        <div id="steps-container">
-            <label for="steps">Steps:</label>
-            <ol id="recipe-steps"></ol>
-        </div>
-        <form id="add-step">
-            <input type="text" placeholder="Add new step" class="add-step" name="step">
-        </form> 
-        <button id="edit-steps-button">Edit steps</button>
+
+        <label for="title">Title ✏️</label>
+        <input type="text" name="title" id="recipe-title" class="input-title" placeholder="Recipe's name">
+
+        <label for="description">Description 📝</label>
+        <textarea name="description" id="recipe-description" class="input-description" placeholder="Describe your recipe..."></textarea>
+
     </div>
+
     <div class="recipe-ingredients container">
+
+        <label>Ingredients 🍅</label>
+
         <div class="ingredients-list" id="ingredients-list"></div>
-        <form id="add-ingredient">
-            <input type="text" name="ingredient" placeholder="Add ingredient">
-            <button>+</button>
+
+        <form class="input-form" id="add-ingredient">
+            <input class="add-ingredient" type="text" name="ingredient" placeholder="Add ingredient +" autocomplete="off">
+
+            <!-- <button>+</button> -->
         </form>
+
+    </div>
+
+    <div class="recipe-steps container" id="recipe-steps-container">
+
+        <label>Directions ⏲️</label>
+        <ol class="steps-list" id="recipe-steps"></ol>
+
+        <form class="input-form" id="add-step">
+            <input type="text" placeholder="Add new step +" class="add-step" name="step" autocomplete="off">
+        </form>
+
+        <button id="edit-steps-button">Edit steps</button>
+
     </div>
 
     <div class="remove-recipe container">
         <span>Danger zone</span>
-        <button id="remove-recipe">Remove recipe</button>
+        <button id="remove-recipe">Remove recipe 🗑️</button>
     </div>
-    
+
     <script src="scripts/edit-bundle.js"></script>
 </body>
 </html>

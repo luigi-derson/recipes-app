@@ -3,7 +3,12 @@ import { getFilters } from './filters'
 
 
 const renderRecipes = () => {
-    const recipesList = document.querySelector('#recipes-list')
+    const recipesList = document.querySelector('#recipes-list'),
+    noRecipes = document.createElement('span')
+
+    noRecipes.textContent = 'There are not recipes to show, create a new one!'
+    noRecipes.classList.add('no-recipes')
+
     const {searchTitle} = getFilters()
     const recipes = getRecipes()
     const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchTitle.toLowerCase()))
@@ -12,14 +17,18 @@ const renderRecipes = () => {
     if (filteredRecipes.length > 0) {
         filteredRecipes.forEach(recipe => recipesList.appendChild(generateRecipeToDOM(recipe)))
     } else {
-        recipesList.innerHTML = 'There are not recipes to show, create a new one!'
+        recipesList.appendChild(noRecipes)
     }
-    
+
 }
 
 const renderSteps = (recipe) => {
     const orderedList = document.querySelector('#recipe-steps'),
-    editStepsButton = document.querySelector('#edit-steps-button')
+    editStepsButton = document.querySelector('#edit-steps-button'),
+    noSteps = document.createElement('span')
+
+    noSteps.textContent = 'Add the steps now'
+    noSteps.classList.add('no-steps')
 
     orderedList.innerHTML = ''
 
@@ -29,20 +38,24 @@ const renderSteps = (recipe) => {
         })
         editStepsButton.style.display = ''
     } else {
-        orderedList.innerHTML = 'No steps yet'
+        orderedList.appendChild(noSteps)
         editStepsButton.style.display = 'none'
     }
 }
 
 const renderIngredients = (recipe) => {
-    const recipeIngredients = document.querySelector('#ingredients-list')
-    
+    const recipeIngredients = document.querySelector('#ingredients-list'),
+    noIngredients = document.createElement('span')
+
+    noIngredients.textContent = 'Add the ingredients to your recipe!'
+    noIngredients.classList.add('no-ingredients')
+
     recipeIngredients.innerHTML = ''
-    
+
     if (recipe.ingredients.length > 0) {
         recipe.ingredients.forEach(ingredient => recipeIngredients.appendChild(generateIngredientsToDOM(ingredient)))
     } else {
-        recipeIngredients.innerHTML = 'No ingredients yet, add them!'
+        recipeIngredients.appendChild(noIngredients)
     }
 }
 
@@ -59,11 +72,16 @@ const generateRecipeToDOM = (recipe) => {
 
     recipeCard.classList.add('recipe-card')
 
-    recipeTitle.textContent = recipe.title
+    if (recipe.title.length > 0) {
+        recipeTitle.textContent = recipe.title
+    } else {
+        recipeTitle.textContent = 'Unnamed recipe'
+    }
+
     recipeTitle.classList.add('recipe-info-title')
     recipeCard.appendChild(recipeTitle)
 
-    const maxChAllowed = 110 //It depends on design
+    const maxChAllowed = 105 //It depends on design
 
     if (recipe.description.length > maxChAllowed) {
         let result = ''
@@ -71,6 +89,8 @@ const generateRecipeToDOM = (recipe) => {
             result += recipe.description[i]
         }
         recipeDescription.textContent = `${result}...`
+    } else if (recipe.description.length === 0) {
+        recipeDescription.textContent = 'No description yet'
     } else {
         recipeDescription.textContent = recipe.description
     }
@@ -92,7 +112,7 @@ const generateRecipeToDOM = (recipe) => {
 
     recipeWrap.appendChild(recipeCard)
     recipeWrap.setAttribute('href', `/edit.html#${recipe.id}`)
-    
+
     return recipeWrap
 }
 
@@ -113,27 +133,39 @@ const generateStepToDOM = (step) => {
 
 const generateIngredientsToDOM = (ingredient) => {
     const containerEl = document.createElement('div')
+    const label = document.createElement('label')
     const checkEl = document.createElement('input')
-    const textEl = document.createElement('span')
+    const customCheck = document.createElement('span')
+    const textEl = document.createElement('p')
     const removeEl = document.createElement('button')
+
+    label.classList.add('checkbox-label')
 
     checkEl.setAttribute('type', 'checkbox')
     checkEl.checked = ingredient.itHas
-    containerEl.appendChild(checkEl)
+    label.appendChild(checkEl)
     checkEl.addEventListener('change', () => {
         toggleIngredient(ingredient.name)
     })
 
+    customCheck.classList.add('checkbox-custom')
+    label.appendChild(customCheck)
+    containerEl.appendChild(label)
+
     textEl.textContent = ingredient.name
+    textEl.classList.add('ingredient-text')
     containerEl.appendChild(textEl)
 
     removeEl.textContent = 'remove'
+    removeEl.classList.add('remove-ingredient')
     containerEl.appendChild(removeEl)
     removeEl.addEventListener('click', () => {
         removeIngredient(ingredient.name)
     })
 
-    return containerEl 
+    containerEl.classList.add('ingredient-item')
+
+    return containerEl
 }
 
 const loadEditPage = (recipeId) => {

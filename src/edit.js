@@ -2,8 +2,8 @@ import { loadRecipes, saveRecipes, removeRecipe, addIngredient, addStep, editSte
 import { loadEditPage } from './views'
 
 const recipeTitle = document.querySelector('#recipe-title'),
-    recipeInfo = document.querySelector('#recipe-info'),
     recipeDescription = document.querySelector('#recipe-description'),
+    recipeStepsContainer = document.querySelector('#recipe-steps-container'),
     recipeSteps = document.querySelector('#add-step'),
     editStepsButton = document.querySelector('#edit-steps-button'),
     addIngredientForm = document.querySelector('#add-ingredient'),
@@ -15,6 +15,19 @@ recipeTitle.addEventListener('input', (e) => {
     recipe.title = e.target.value
     saveRecipes()
 })
+
+// Auto resize textarea
+const textArea = document.getElementsByTagName('textarea');
+for (var i = 0; i < textArea.length; i++) {
+  textArea[i].setAttribute('style', 'height:' + (textArea[i].scrollHeight) + 'px;overflow-y:hidden;');
+  textArea[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput(e) {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+}
+// End of fuction
 
 recipeDescription.addEventListener('input', (e) => {
     recipe.description = e.target.value
@@ -31,8 +44,8 @@ recipeSteps.addEventListener('submit', (e) => {
 
 editStepsButton.addEventListener('click', () => {
     if (recipe.steps.length > 0) {
-        editSteps(recipe, recipeInfo, editStepsButton)
-    }   
+        editSteps(recipe, recipeStepsContainer, editStepsButton)
+    }
 })
 
 addIngredientForm.addEventListener('submit', (e) => {
@@ -56,3 +69,4 @@ window.addEventListener('storage', (e) => {
         loadEditPage(recipeId)
     }
 })
+
