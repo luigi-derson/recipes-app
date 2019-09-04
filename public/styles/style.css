@@ -7,7 +7,7 @@
 }
 
 html, body {
-    font-family: 'Work Sans', Helvetica, sans-serif;
+    font-family: 'Work Sans', Helvetica, Arial, sans-serif;
     font-size: 16px;
 }
 
@@ -45,6 +45,11 @@ input:focus, select:focus, textarea:focus, button:focus {
     font-family: 'Pacifico';
     font-size: 2.5rem;
     color: coral;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: black;
 }
 
 .filter-recipes {
@@ -105,7 +110,8 @@ input:focus, select:focus, textarea:focus, button:focus {
 .add-recipe {
     width: 10rem;
     padding: .8em 0;
-    font-size: 1.125rem;
+    font-size: 1rem;
+    font-family: 'Work Sans', sans-serif;
     background-color: coral;
     color: white;
     border: none;
@@ -119,6 +125,17 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 .menu {
     padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.menu a {
+    color: coral;
+}
+
+.menu a:hover {
+    color: rgb(241, 105, 56);
 }
 
 .recipe-info {
@@ -168,10 +185,17 @@ label {
     margin: 0 auto;
 }
 
-.no-ingredients, .no-steps, .no-recipes {
+.no-steps, .no-ingredients {
     margin: 0 auto;
-    padding: 2.5rem;
+    padding: 2rem;
     color: gray;
+}
+
+.no-recipes {
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    border-radius: 5px;
+    border: 3px dotted rgb(223, 223, 223);
 }
 
 .ingredients-list {
@@ -181,11 +205,14 @@ label {
 .steps-list {
     display: flex;
     flex-direction: column;
+    counter-reset: section; 
+    list-style-type: none;
 }
 
 .add-ingredient, .add-step {
-    padding: .8rem;
-    width: 20rem;
+    padding-top: 1.5rem;
+    padding-bottom: .5rem;
+    width: 30rem;
     font-family: 'Work Sans',sans-serif;
     font-size: 1.125em;
     text-align: center;
@@ -199,18 +226,33 @@ label {
     margin-bottom: 2rem;
 }
 
-.ingredient-item {
+.ingredient-item, .step-item {
     display: flex;
     padding: .8rem 0;
     font-size: 1.125rem;
+    align-items: flex-start;
+}
+
+.step-item::before {
+    counter-increment: section;
+    content: counter(section)'.';
+    color: coral;
+    width: 24px;
+    margin-right: 1rem;
 }
 
 .ingredient-text {
-    width: 80%;
+    max-width: 85%;
 }
 
-.remove-ingredient {
+.remove-ingredient, .remove-step {
     margin-left: auto;
+    cursor: pointer;
+    color: gray;
+}
+
+.step-text {
+    max-width: 85%;
 }
 
 /* Start checkbox style */

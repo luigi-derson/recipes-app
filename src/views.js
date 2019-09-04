@@ -27,7 +27,7 @@ const renderSteps = (recipe) => {
     editStepsButton = document.querySelector('#edit-steps-button'),
     noSteps = document.createElement('span')
 
-    noSteps.textContent = 'Add the steps now'
+    noSteps.textContent = 'Add the recipe\'s steps'
     noSteps.classList.add('no-steps')
 
     orderedList.innerHTML = ''
@@ -117,12 +117,18 @@ const generateRecipeToDOM = (recipe) => {
 }
 
 const generateStepToDOM = (step) => {
-    const stepElement = document.createElement('li')
-    const remove = document.createElement('div')
-    remove.textContent = 'x'
-    //remove.setAttribute('disabled', 'true')
-    stepElement.textContent = step
+    const stepElement = document.createElement('li'),
+    stepText = document.createElement('span'),
+    remove = document.createElement('i')
+    
+    stepText.textContent = step
+    stepText.classList.add('step-text')
+    stepElement.appendChild(stepText)
+
+    remove.classList.add('remove-step', 'far', 'fa-trash-alt')
     stepElement.appendChild(remove)
+
+    stepElement.classList.add('step-item')
 
     remove.addEventListener('click', () => {
         removeStep(step)
@@ -137,7 +143,7 @@ const generateIngredientsToDOM = (ingredient) => {
     const checkEl = document.createElement('input')
     const customCheck = document.createElement('span')
     const textEl = document.createElement('p')
-    const removeEl = document.createElement('button')
+    const removeEl = document.createElement('i')
 
     label.classList.add('checkbox-label')
 
@@ -156,8 +162,8 @@ const generateIngredientsToDOM = (ingredient) => {
     textEl.classList.add('ingredient-text')
     containerEl.appendChild(textEl)
 
-    removeEl.textContent = 'remove'
-    removeEl.classList.add('remove-ingredient')
+    //removeEl.textContent = 'x'
+    removeEl.classList.add('remove-ingredient', 'far', 'fa-trash-alt')
     containerEl.appendChild(removeEl)
     removeEl.addEventListener('click', () => {
         removeIngredient(ingredient.name)

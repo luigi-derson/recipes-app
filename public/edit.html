@@ -13,18 +13,20 @@
     <header>
         <nav class="navbar container">
           <a href="index.html" class="title">Reciper</a>
-          <span>Recipe information</span>
+          <span class="subtitle">Recipe information <i class="far fa-edit"></i></span>
         </nav>
     </header>
 
     <div class="menu container">
-        <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+        <a href=""><i class="fas fa-arrow-left"></i> Previous recipe</a>
+        <a href="./index.html"><i class="fas fa-home"></i></a>
+        <a href="">Next recipe <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <div class="recipe-info container" id="recipe-info">
 
         <label for="title">Title ✏️</label>
-        <input type="text" name="title" id="recipe-title" class="input-title" placeholder="Recipe's name">
+        <input type="text" name="title" id="recipe-title" class="input-title" placeholder="Recipe's name" autocomplete="off">
 
         <label for="description">Description 📝</label>
         <textarea name="description" id="recipe-description" class="input-description" placeholder="Describe your recipe..."></textarea>
@@ -60,7 +62,7 @@
 
     <div class="remove-recipe container">
         <span>Danger zone</span>
-        <button id="remove-recipe">Remove recipe 🗑️</button>
+        <button id="remove-recipe">Remove recipe <i class="fas fa-trash"></i></button>
     </div>
 
     <script src="scripts/edit-bundle.js"></script>
