@@ -1,13 +1,26 @@
-import { loadRecipes, saveRecipes, removeRecipe, addIngredient, addStep, editSteps } from './recipes'
-import { loadEditPage } from './views'
+import { loadRecipes, saveRecipes, removeRecipe, addIngredient, addStep, getRecipes } from './recipes'
+import { loadEditPage, test } from './views'
 
 const recipeTitle = document.querySelector('#recipe-title'),
+    previousRecipe = document.querySelector('#previous-recipe'),
+    nextRecipe = document.querySelector('#next-recipe'),
     recipeDescription = document.querySelector('#recipe-description'),
     recipeSteps = document.querySelector('#add-step'),
     addIngredientForm = document.querySelector('#add-ingredient'),
-    removeRecipeButton = document.querySelector('#remove-recipe'),
-    recipeId = location.hash.substring(1),
-    recipe = loadEditPage(recipeId)
+    removeRecipeButton = document.querySelector('#remove-recipe')
+
+    const recipeId = location.hash.substring(1)
+    const recipe = loadEditPage(recipeId)
+
+previousRecipe.addEventListener('click', () => {
+    /* location.assign(`/edit.html#0885bebe-ebee-4bc9-bfb9-72bda1652732`)
+    loadEditPage("0885bebe-ebee-4bc9-bfb9-72bda1652732") */
+})
+
+nextRecipe.addEventListener('click', () => {
+    /* location.assign(`/edit.html#ca8e3707-fec2-4f68-9fc6-69be7962f868`)
+    loadEditPage('ca8e3707-fec2-4f68-9fc6-69be7962f868') */
+})
 
 recipeTitle.addEventListener('input', (e) => {
     recipe.title = e.target.value
@@ -40,11 +53,6 @@ recipeSteps.addEventListener('submit', (e) => {
     e.target.elements.step.value = ''
 })
 
-/* editStepsButton.addEventListener('click', () => {
-    if (recipe.steps.length > 0) {
-        editSteps(recipe, recipeStepsContainer)
-    }
-}) */
 
 addIngredientForm.addEventListener('submit', (e) => {
     e.preventDefault()

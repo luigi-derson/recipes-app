@@ -13,14 +13,14 @@
     <header>
         <nav class="navbar container">
           <a href="index.html" class="title">Reciper</a>
-          <span class="subtitle">Recipe information <i class="far fa-edit"></i></span>
+          <span class="subtitle">Recipe information</span>
         </nav>
     </header>
 
-    <div class="menu container">
-        <a href=""><i class="fas fa-arrow-left"></i> Previous recipe</a>
+    <div class="menu container" id="menu">
+        <span class="previous-recipe" id="previous-recipe"><i class="fas fa-arrow-left"></i> Previous recipe</span>
         <a href="./index.html"><i class="fas fa-home"></i></a>
-        <a href="">Next recipe <i class="fas fa-arrow-right"></i></a>
+        <span class="next-recipe" id="next-recipe">Next recipe <i class="fas fa-arrow-right"></i></span>
     </div>
 
     <div class="recipe-info container" id="recipe-info">
@@ -40,9 +40,7 @@
         <div class="ingredients-list" id="ingredients-list"></div>
 
         <form class="input-form" id="add-ingredient">
-            <input class="add-ingredient" type="text" name="ingredient" placeholder="Add ingredient +" autocomplete="off">
-
-            <!-- <button>+</button> -->
+            <input class="add-ingredient" type="text" name="ingredient" placeholder="New ingredient +" autocomplete="off">
         </form>
 
     </div>
@@ -53,14 +51,14 @@
         <ol class="steps-list" id="recipe-steps"></ol>
 
         <form class="input-form" id="add-step">
-            <input type="text" placeholder="Add new step +" class="add-step" name="step" autocomplete="off">
+            <input type="text" placeholder="New step +" class="add-step" name="step" autocomplete="off">
         </form>
 
     </div>
 
     <div class="remove-recipe container">
-        <span>Danger zone</span>
-        <button id="remove-recipe">Remove recipe <i class="fas fa-trash"></i></button>
+        <span>DANGER ZONE</span>
+        <button class="remove-recipe-button" id="remove-recipe">Remove recipe</button>
     </div>
 
     <script src="scripts/edit-bundle.js"></script>

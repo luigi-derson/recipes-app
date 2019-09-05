@@ -1,4 +1,4 @@
-import { getRecipes, toggleIngredient, removeIngredient, removeStep, editSteps } from './recipes'
+import { getRecipes, toggleIngredient, removeIngredient, removeStep, editSteps, loadRecipes } from './recipes'
 import { getFilters } from './filters'
 
 
@@ -26,7 +26,7 @@ const renderSteps = (recipe) => {
     const orderedList = document.querySelector('#recipe-steps'),
     noSteps = document.createElement('span')
 
-    noSteps.textContent = 'Add the recipe\'s steps'
+    noSteps.textContent = 'No directions yet'
     noSteps.classList.add('no-steps')
 
     orderedList.innerHTML = ''
@@ -44,7 +44,7 @@ const renderIngredients = (recipe) => {
     const recipeIngredients = document.querySelector('#ingredients-list'),
     noIngredients = document.createElement('span')
 
-    noIngredients.textContent = 'Add the ingredients to your recipe!'
+    noIngredients.textContent = 'No ingredients yet'
     noIngredients.classList.add('no-ingredients')
 
     recipeIngredients.innerHTML = ''
@@ -61,11 +61,15 @@ const generateRecipeToDOM = (recipe) => {
     const recipeCard = document.createElement('div')
     const recipeTitle = document.createElement('span')
     const recipeDescription = document.createElement('p')
-    const recipeIngredients = document.createElement('div')
+    const recipeInfo = document.createElement('div')
+    const recipeIngredients = document.createElement('span')
     const recipeSteps = document.createElement('span')
+    const recipeTime = document.createElement('span')
+    const recipeDifficulty = document.createElement('span')
+    const recipeLikes = document.createElement('span')
 
     const ingredientsWeHave = recipe.ingredients.filter(ingredient => ingredient.itHas === true)
-    const ingredientsCounter = ingredientsWeHave.length !== recipe.ingredients.length ? `You have ${ingredientsWeHave.length} of ${recipe.ingredients.length} ingredients` : 'You have all the ingredients'
+    const ingredientsCounter = ingredientsWeHave.length !== recipe.ingredients.length ? `${ingredientsWeHave.length} of ${recipe.ingredients.length} ingredients` : 'All ingredients'
 
     recipeCard.classList.add('recipe-card')
 
@@ -78,7 +82,7 @@ const generateRecipeToDOM = (recipe) => {
     recipeTitle.classList.add('recipe-info-title')
     recipeCard.appendChild(recipeTitle)
 
-    const maxChAllowed = 105 //It depends on design
+    const maxChAllowed = 120 //It depends on design
 
     if (recipe.description.length > maxChAllowed) {
         let result = ''
@@ -94,19 +98,34 @@ const generateRecipeToDOM = (recipe) => {
     recipeDescription.classList.add('recipe-info-description')
     recipeCard.appendChild(recipeDescription)
 
-    recipeSteps.textContent = `Steps: ${recipe.steps.length}`
+    recipeInfo.classList.add('recipe-info-icons')
+
+    recipeSteps.innerHTML = `<i class="fas fa-layer-group"></i> ${recipe.steps.length} Steps`
     recipeSteps.classList.add('recipe-info-steps')
-    recipeCard.appendChild(recipeSteps)
+    recipeInfo.appendChild(recipeSteps)
+
+    recipeTime.innerHTML = `<i class="fas fa-clock"></i> 30 Mins.`
+    recipeTime.classList.add('recipe-time')
+    recipeInfo.appendChild(recipeTime)
+
+    recipeDifficulty.innerHTML = `<i class="fas fa-smile"></i> Easy`
+    recipeDifficulty.classList.add('recipe-difficulty')
+    recipeInfo.appendChild(recipeDifficulty)
+
+    recipeLikes.innerHTML = `<i class="fas fa-heart"></i> 10`
+    recipeLikes.classList.add('recipe-likes')
+    recipeInfo.appendChild(recipeLikes)
 
 
     if (ingredientsWeHave.length > 0) {
-        recipeIngredients.textContent = ingredientsCounter
+        recipeIngredients.innerHTML =  `<i class="fas fa-apple-alt"></i> ${ingredientsCounter}`
     } else {
-        recipeIngredients.textContent = 'You don\'t have any ingredient yet'
+        recipeIngredients.innerHTML = `<i class="fas fa-apple-alt"></i> No ingredients yet`
     }
     recipeIngredients.classList.add('recipe-info-ingredients')
-    recipeCard.appendChild(recipeIngredients)
+    recipeInfo.appendChild(recipeIngredients)
 
+    recipeCard.appendChild(recipeInfo)
     recipeWrap.appendChild(recipeCard)
     recipeWrap.setAttribute('href', `/edit.html#${recipe.id}`)
 
@@ -119,7 +138,7 @@ const generateStepToDOM = (step) => {
     editStep = document.createElement('i'),
     saveStep = document.createElement('i'),
     remove = document.createElement('i')
-    
+
     stepText.textContent = step
     stepText.classList.add('step-text')
     stepElement.appendChild(stepText)
@@ -172,7 +191,6 @@ const generateIngredientsToDOM = (ingredient) => {
     textEl.classList.add('ingredient-text')
     containerEl.appendChild(textEl)
 
-    //removeEl.textContent = 'x'
     removeEl.classList.add('remove-ingredient', 'far', 'fa-trash-alt')
     containerEl.appendChild(removeEl)
     removeEl.addEventListener('click', () => {
@@ -185,11 +203,11 @@ const generateIngredientsToDOM = (ingredient) => {
 }
 
 const loadEditPage = (recipeId) => {
-    const recipeTitle = document.querySelector('#recipe-title')
-    const recipeDescription = document.querySelector('#recipe-description')
+    const recipeTitle = document.querySelector('#recipe-title'),
+    recipeDescription = document.querySelector('#recipe-description')
 
     const recipes = getRecipes()
-    const recipe = recipes.find((recipe) => recipe.id === recipeId)
+    const recipe = recipes.find(recipe => recipe.id === recipeId)
 
     if (!recipe) {
         location.assign('/index.html')

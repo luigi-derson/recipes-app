@@ -27,7 +27,7 @@ main {
 
 input[type=text]::placeholder, textarea::placeholder {
     font-family: FontAwesome, 'Work Sans', Helvetica, sans-serif;
-    color: #cfcfcf;
+    color: darkgray;
 }
 
 input:focus, select:focus, textarea:focus, button:focus {
@@ -49,7 +49,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 .subtitle {
     font-size: 1.125rem;
-    color: black;
+    color: coral;
 }
 
 .filter-recipes {
@@ -62,7 +62,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .container {
-    max-width: 35rem;
+    max-width: 40rem;
     margin: 0 auto;
 }
 
@@ -75,7 +75,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 .recipe-card {
     display: flex;
     flex-direction: column;
-    width: 35rem;
+    max-width: 100%;
     padding: 1.5rem 1rem;
     margin: .5rem 0;
     border-radius: 5px;
@@ -94,23 +94,23 @@ input:focus, select:focus, textarea:focus, button:focus {
 .recipe-info-title {
     color: black;
     font-size: 1.85rem;
-    padding-bottom: .5rem;
+    padding-bottom: 1rem;
 }
 
 .recipe-info-description {
     color: gray;
-    padding-bottom: .8rem;
+    padding-bottom: 1.25rem;
     font-size: 1.125em;
 }
 
-.recipe-info-steps {
+.recipe-info-icons {
     color: gray;
-    padding-bottom: .5rem;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.recipe-info-ingredients {
-    color: gray;
-    font-size: .8rem;
+.recipe-info-icons > * {
+    padding-right: 2.2rem;
 }
 
 .add-recipe {
@@ -126,22 +126,23 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .add-recipe:hover {
-    background-color: rgb(253, 112, 61);
+    background-color: tomato;
 }
 
 .menu {
-    padding: 1.5rem 0;
+    padding: 1.8rem 0;
     display: flex;
     justify-content: space-between;
-    
+    color: darkgray;
 }
 
 .menu a {
-    color: coral;
+    color: darkgray;
 }
 
-.menu a:hover {
-    color: rgb(241, 105, 56);
+.menu span:hover, .menu a:hover {
+    color: coral;
+    cursor: pointer;
 }
 
 .recipe-info {
@@ -161,13 +162,14 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 label {
-    padding-bottom: .8rem;
-    font-size: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: gray;
+    font-size: 1.5rem;
 }
 
 .input-title {
     width: 100%;
-    border: 2px solid gray;
+    border: 2px solid coral;
     border-radius: 5px;
     padding: .8rem;
     margin-bottom: 1.5rem;
@@ -181,10 +183,14 @@ label {
     resize: none;
     font-size: 1.125rem;
     font-family: 'Work Sans', sans-serif;
-    border: 2px solid gray;
+    border: 2px solid coral;
     border-radius: 5px;
     padding: .8rem;
     margin-bottom: 1.5rem;
+}
+
+.input-description:focus, .input-title:focus {
+    box-shadow: 0 0 10px blanchedalmond;
 }
 
 .input-form {
@@ -193,7 +199,7 @@ label {
 
 .no-steps, .no-ingredients {
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem 0;
     color: gray;
 }
 
@@ -207,29 +213,39 @@ label {
 .ingredients-list {
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
+    background-color: snow;
+    padding: 0 .8rem;
 }
 .steps-list {
     display: flex;
     flex-direction: column;
-    counter-reset: section; 
+    counter-reset: section;
     list-style-type: none;
+    border-radius: 5px;
+    background-color: snow;
+    padding: 0 .8rem;
 }
 
 .add-ingredient, .add-step {
     padding-top: 1.5rem;
     padding-bottom: .5rem;
-    width: 30rem;
+    width: 28rem;
     font-family: 'Work Sans',sans-serif;
-    font-size: 1.125em;
     text-align: center;
+    font-size: 1.125em;
     border-top: none;
     border-left: none;
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid coral;
     border-right: none;
     outline: none;
     color: black;
     background-color: white;
     margin-bottom: 2rem;
+}
+
+.add-ingredient:focus, .add-step:focus {
+    border-bottom: 2px solid blanchedalmond;
 }
 
 .ingredient-item, .step-item {
@@ -257,12 +273,52 @@ label {
     color: gray;
 }
 
+.edit-step:hover {
+    color: cornflowerblue;
+}
+
+.save-step:hover {
+    color: limegreen;
+}
+
 .remove-ingredient:hover, .remove-step:hover {
     color: red;
 }
 
 .step-text {
     width: 80%;
+}
+
+.remove-recipe {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+    padding: 2rem 0;
+    margin-top: 1rem;
+    border-top: 2px dashed darkgray;
+}
+
+.remove-recipe-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: gray;
+    font-size: 1em;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.remove-recipe-button:hover {
+    color: red;
+}
+
+.step-text[contenteditable="true"] {
+    border: 1px solid coral;
+}
+
+.step-text[contenteditable="true"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px blanchedalmond;
+    border: 1px solid coral;
 }
 
 /* Start checkbox style */

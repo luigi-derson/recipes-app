@@ -30,7 +30,7 @@ const createRecipe = () => {
         description: '',
         time: '',
         difficulty: '',
-        rate: '',
+        likes: '',
         steps: [],
         ingredients: []
     })
@@ -44,7 +44,7 @@ const removeRecipe = (id) => {
         recipes.splice(index, 1)
         saveRecipes()
         loadEditPage(id)
-    } 
+    }
 }
 
 const addStep = (recipe, step) => {
@@ -60,17 +60,16 @@ const editSteps = (li, editButton, saveButton) => {
     const recipe = recipes.find(recipe => recipe.id === recipeId)
     const index = recipe.steps.findIndex(step => step === li.textContent)
 
-    li.setAttribute('contenteditable', 'true')
+    li.firstChild.setAttribute('contenteditable', 'true')
     editButton.style.display = 'none'
     saveButton.style.display = ''
 
     saveButton.addEventListener('click', () => {
-        recipe.steps[index] = li.textContent
-        saveRecipes()
-        li.removeAttribute('contenteditable')
+        recipe.steps[index] = li.firstChild.textContent
+        li.firstChild.removeAttribute('contenteditable')
         saveButton.style.display = 'none'
         editButton.style.display = ''
-        loadEditPage(recipe.id)
+        saveRecipes()
     })
 }
 
@@ -115,7 +114,7 @@ const removeIngredient = (ingredient) => {
     const ingredientIndex = recipe.ingredients.findIndex(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
 
     recipe.ingredients.splice(ingredientIndex, 1)
-    
+
     saveRecipes()
     loadEditPage(recipe.id)
 }

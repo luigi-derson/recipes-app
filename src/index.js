@@ -6,8 +6,9 @@ import { setFilters } from './filters'
 
 renderRecipes()
 
-const addRecipe = document.querySelector('#add-recipe')
-const filterRecipes = document.querySelector('#filter-recipes')
+const addRecipe = document.querySelector('#add-recipe'),
+    filterRecipes = document.querySelector('#filter-recipes')
+
 
 filterRecipes.addEventListener('input', (e) => {
     setFilters({
@@ -16,7 +17,7 @@ filterRecipes.addEventListener('input', (e) => {
     renderRecipes()
 })
 
-addRecipe.addEventListener('click', (e) => {
+addRecipe.addEventListener('click', () => {
     createRecipe()
 })
 
@@ -26,5 +27,3 @@ window.addEventListener('storage', (e) => {
         renderRecipes()
     }
 })
-
-
