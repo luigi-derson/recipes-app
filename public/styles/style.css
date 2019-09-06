@@ -17,7 +17,7 @@ a {
 }
 
 header {
-    width: 100%;
+    max-width: 100%;
     background-color: blanchedalmond;
 }
 
@@ -62,7 +62,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 }
 
 .container {
-    max-width: 40rem;
+    max-width: 45%;
     margin: 0 auto;
 }
 
@@ -227,10 +227,14 @@ label {
     padding: 0 .8rem;
 }
 
+.input-form {
+    width: 65%;
+}
+
 .add-ingredient, .add-step {
     padding-top: 1.5rem;
     padding-bottom: .5rem;
-    width: 28rem;
+    width: 100%;
     font-family: 'Work Sans',sans-serif;
     text-align: center;
     font-size: 1.125em;
@@ -406,3 +410,48 @@ label {
 }
 
 /* End checkbox style */
+
+@media (min-width: 320px) and (max-width: 812px) {
+    .navbar {
+        padding: .8rem .5rem;
+    }
+
+    .filter-recipes {
+        width: 10rem;
+    }
+
+    .container {
+        max-width: 95%;
+    }
+
+    .recipe-info-icons {
+        font-size: .9rem;
+    }
+
+    .recipe-info-icons > * {
+        padding-right: 1.25rem;
+        text-align: center;
+    }
+
+    .input-form {
+        width: 85%;
+    }
+
+    .step-text {
+        width: 70%;
+    }
+}
+
+@media (min-width: 813px) and (max-width: 1200px) {
+    .container {
+        max-width: 65%;
+    }
+
+}
+
+@media (min-width: 1201px) and (max-width: 4000px) {
+    .container {
+        max-width: 40rem;
+    }
+
+}
