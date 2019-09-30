@@ -25,6 +25,16 @@ main {
     display: flex;
 }
 
+footer {
+    margin-top: 5rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+    color: coral;
+}
+
 input[type=text]::placeholder, textarea::placeholder {
     font-family: FontAwesome, 'Work Sans', Helvetica, sans-serif;
     color: darkgray;
