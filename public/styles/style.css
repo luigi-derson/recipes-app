@@ -426,10 +426,11 @@ label {
 
     .recipe-info-icons {
         font-size: .9rem;
+        margin: 0 auto;
     }
 
     .recipe-info-icons > * {
-        padding-right: 1.25rem;
+        padding: 0 0.8rem;
         text-align: center;
     }
 
