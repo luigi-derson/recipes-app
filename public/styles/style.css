@@ -1,414 +1,458 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico|Work+Sans:400,600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Pacifico|Work+Sans:400,600&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    font-family: 'Work Sans', Helvetica, Arial, sans-serif;
-    font-size: 16px;
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 a {
-    text-decoration: none;
-    outline: none;
+  text-decoration: none;
+  outline: none;
 }
 
 header {
-    max-width: 100%;
-    background-color: blanchedalmond;
+  max-width: 100%;
+  background-color: blanchedalmond;
 }
 
 main {
-    display: flex;
+  display: flex;
+  flex: 1 0 auto;
 }
 
 footer {
-    margin-top: 5rem;
-    padding: 1rem;
-    text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 footer a {
-    color: coral;
+  color: coral;
 }
 
-input[type=text]::placeholder, textarea::placeholder {
-    font-family: FontAwesome, 'Work Sans', Helvetica, sans-serif;
-    color: darkgray;
+input[type="text"]::placeholder,
+textarea::placeholder {
+  font-family: FontAwesome, "Work Sans", Helvetica, sans-serif;
+  color: darkgray;
 }
 
-input:focus, select:focus, textarea:focus, button:focus {
-    outline: none;
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }
 
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0;
 }
 
 .title {
-    font-family: 'Pacifico';
-    font-size: 2.5rem;
-    color: coral;
+  font-family: "Pacifico";
+  font-size: 2.5rem;
+  color: coral;
 }
 
 .subtitle {
-    font-size: 1.125rem;
-    color: coral;
+  font-size: 1.125rem;
+  color: coral;
 }
 
 .filter-recipes {
-    width: 11.5rem;
-    font-family: 'Work Sans', sans-serif;
-    border: 1px solid white;
-    border-radius: 20px;
-    font-size: 1rem;
-    padding: .8rem;
+  width: 11.5rem;
+  font-family: "Work Sans", sans-serif;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-size: 1rem;
+  padding: 0.8rem;
 }
 
 .container {
-    max-width: 45%;
-    margin: 0 auto;
+  width: 45%;
+  margin: 0 auto;
 }
 
 .recipes-list {
-    display: flex;
-    flex-direction: column;
-    margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
 }
 
 .recipe-card {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    padding: 1.5rem 1rem;
-    margin: .5rem 0;
-    border-radius: 5px;
-    border: 1px solid rgb(223, 223, 223);
-    -webkit-box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.20);
-    -moz-box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.20);
-    box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.20);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  border: 1px solid rgb(223, 223, 223);
+  -webkit-box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
 .recipe-card:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
-    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
-    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.20);
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .recipe-info-title {
-    color: black;
-    font-size: 1.85rem;
-    padding-bottom: 1rem;
+  color: black;
+  font-size: 1.85rem;
+  padding-bottom: 1rem;
 }
 
 .recipe-info-description {
-    color: gray;
-    padding-bottom: 1.25rem;
-    font-size: 1.125em;
+  color: gray;
+  padding-bottom: 1.25rem;
+  font-size: 1.125em;
 }
 
 .recipe-info-icons {
-    color: gray;
-    display: flex;
-    justify-content: flex-start;
+  color: gray;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .recipe-info-icons > * {
-    padding-right: 2.2rem;
+  padding-right: 2.2rem;
+}
+
+.fa-layer-group:hover {
+  color: cadetblue;
+}
+
+.fa-clock:hover {
+  color: cornflowerblue;
+}
+
+.fa-heart:hover {
+  color: crimson;
+}
+
+.fa-smile:hover {
+  color: orange;
+}
+
+.fa-apple-alt:hover {
+  color: green;
 }
 
 .add-recipe {
-    width: 10rem;
-    padding: .8em 0;
-    font-size: 1rem;
-    font-family: 'Work Sans', sans-serif;
-    background-color: coral;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  width: 10rem;
+  padding: 0.8em 0;
+  font-size: 1rem;
+  font-family: "Work Sans", sans-serif;
+  background-color: coral;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .add-recipe:hover {
-    background-color: tomato;
+  background-color: tomato;
 }
 
 .menu {
-    padding: 1.8rem 0;
-    display: flex;
-    justify-content: space-between;
-    color: darkgray;
+  padding: 1.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  color: darkgray;
 }
 
 .menu a {
-    color: darkgray;
+  color: darkgray;
 }
 
-.menu span:hover, .menu a:hover {
-    color: coral;
-    cursor: pointer;
+.menu span:hover,
+.menu a:hover {
+  color: coral;
+  cursor: pointer;
 }
 
 .recipe-info {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
 }
 
 .recipe-ingredients {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-steps {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    padding-bottom: 1.25rem;
-    color: gray;
-    font-size: 1.5rem;
+  padding-bottom: 1.25rem;
+  color: gray;
+  font-size: 1.5rem;
 }
 
 .input-title {
-    width: 100%;
-    border: 2px solid coral;
-    border-radius: 5px;
-    padding: .8rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.125rem;
-    font-family: 'Work Sans', sans-serif;
+  width: 100%;
+  border: 2px solid coral;
+  border-radius: 5px;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  font-family: "Work Sans", sans-serif;
 }
 
 .input-description {
-    width: 100%;
-    min-height: 5rem;
-    resize: none;
-    font-size: 1.125rem;
-    font-family: 'Work Sans', sans-serif;
-    border: 2px solid coral;
-    border-radius: 5px;
-    padding: .8rem;
-    margin-bottom: 1.5rem;
+  width: 100%;
+  min-height: 5rem;
+  resize: none;
+  font-size: 1.125rem;
+  font-family: "Work Sans", sans-serif;
+  border: 2px solid coral;
+  border-radius: 5px;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
 }
 
-.input-description:focus, .input-title:focus {
-    box-shadow: 0 0 10px blanchedalmond;
+.input-description:focus,
+.input-title:focus {
+  box-shadow: 0 0 10px blanchedalmond;
 }
 
 .input-form {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
-.no-steps, .no-ingredients {
-    margin: 0 auto;
-    padding: 1.5rem 0;
-    color: gray;
+.no-steps,
+.no-ingredients {
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  color: gray;
 }
 
 .no-recipes {
-    margin: 0 auto;
-    padding: 1.5rem 1rem;
-    border-radius: 5px;
-    border: 3px dotted rgb(223, 223, 223);
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  border-radius: 5px;
+  border: 3px dotted rgb(223, 223, 223);
 }
 
 .ingredients-list {
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    background-color: snow;
-    padding: 0 .8rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: snow;
+  padding: 0 0.8rem;
 }
 .steps-list {
-    display: flex;
-    flex-direction: column;
-    counter-reset: section;
-    list-style-type: none;
-    border-radius: 5px;
-    background-color: snow;
-    padding: 0 .8rem;
+  display: flex;
+  flex-direction: column;
+  counter-reset: section;
+  list-style-type: none;
+  border-radius: 5px;
+  background-color: snow;
+  padding: 0 0.8rem;
 }
 
 .input-form {
-    width: 65%;
+  width: 65%;
 }
 
-.add-ingredient, .add-step {
-    padding-top: 1.5rem;
-    padding-bottom: .5rem;
-    width: 100%;
-    font-family: 'Work Sans',sans-serif;
-    text-align: center;
-    font-size: 1.125em;
-    border-top: none;
-    border-left: none;
-    border-bottom: 2px solid coral;
-    border-right: none;
-    outline: none;
-    color: black;
-    background-color: white;
-    margin-bottom: 2rem;
+.add-ingredient,
+.add-step {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+  text-align: center;
+  font-size: 1.125em;
+  border-top: none;
+  border-left: none;
+  border-bottom: 2px solid coral;
+  border-right: none;
+  outline: none;
+  color: black;
+  background-color: white;
+  margin-bottom: 2rem;
 }
 
-.add-ingredient:focus, .add-step:focus {
-    border-bottom: 2px solid blanchedalmond;
+.add-ingredient:focus,
+.add-step:focus {
+  border-bottom: 2px solid blanchedalmond;
 }
 
-.ingredient-item, .step-item {
-    display: flex;
-    padding: .8rem 0;
-    font-size: 1.125rem;
-    align-items: space-between;
+.ingredient-item,
+.step-item {
+  display: flex;
+  padding: 0.8rem 0;
+  font-size: 1.125rem;
+  align-items: space-between;
 }
 
 .step-item::before {
-    counter-increment: section;
-    content: counter(section)'.';
-    color: coral;
-    width: 24px;
-    margin-right: 1rem;
+  counter-increment: section;
+  content: counter(section) ".";
+  color: coral;
+  width: 24px;
+  margin-right: 1rem;
 }
 
 .ingredient-text {
-    max-width: 85%;
+  max-width: 85%;
 }
 
-.remove-ingredient, .remove-step, .edit-step, .save-step {
-    margin-left: auto;
-    cursor: pointer;
-    color: gray;
+.remove-ingredient,
+.remove-step,
+.edit-step,
+.save-step {
+  margin-left: auto;
+  cursor: pointer;
+  color: gray;
 }
 
 .edit-step:hover {
-    color: cornflowerblue;
+  color: cornflowerblue;
 }
 
 .save-step:hover {
-    color: limegreen;
+  color: limegreen;
 }
 
-.remove-ingredient:hover, .remove-step:hover {
-    color: red;
+.remove-ingredient:hover,
+.remove-step:hover {
+  color: red;
 }
 
 .step-text {
-    width: 80%;
+  width: 80%;
 }
 
 .remove-recipe {
-    display: flex;
-    justify-content: space-between;
-    color: gray;
-    padding: 2rem 0;
-    margin-top: 1rem;
-    border-top: 2px dashed darkgray;
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  padding: 2rem 0;
+  margin-top: 1rem;
+  border-top: 2px dashed darkgray;
 }
 
 .remove-recipe-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: gray;
-    font-size: 1em;
-    font-family: 'Work Sans', sans-serif;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: crimson;
+  font-size: 1em;
+  font-family: "Work Sans", sans-serif;
 }
 
 .remove-recipe-button:hover {
-    color: red;
+  color: red;
 }
 
 .step-text[contenteditable="true"] {
-    border: 1px solid coral;
+  border: 1px solid coral;
 }
 
 .step-text[contenteditable="true"]:focus {
-    outline: none;
-    box-shadow: 0 0 8px blanchedalmond;
-    border: 1px solid coral;
+  outline: none;
+  box-shadow: 0 0 8px blanchedalmond;
+  border: 1px solid coral;
 }
 
 /* Start checkbox style */
 .checkbox-label {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    margin-right: 1.25rem;
-    font-size: 22px;
-    line-height: 20px;
-    height: 20px;
-    width: 20px;
-    clear: both;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 1.25rem;
+  font-size: 22px;
+  line-height: 20px;
+  height: 20px;
+  width: 20px;
+  clear: both;
 }
 
 .checkbox-label input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .checkbox-label .checkbox-custom {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 24px;
-    width: 24px;
-    background-color: transparent;
-    border-radius: 5px;
-  	transition: all 0.3s ease-out;
-  	-webkit-transition: all 0.3s ease-out;
-  	-moz-transition: all 0.3s ease-out;
-  	-ms-transition: all 0.3s ease-out;
-  	-o-transition: all 0.3s ease-out;
-    border: 2px solid coral;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  border: 2px solid coral;
 }
-
 
 .checkbox-label input:checked ~ .checkbox-custom {
-    background-color: coral;
-    border-radius: 5px;
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
-    opacity:1;
-    border: 2px solid coral;
+  background-color: coral;
+  border-radius: 5px;
+  -webkit-transform: rotate(0deg) scale(1);
+  -ms-transform: rotate(0deg) scale(1);
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid coral;
 }
-
 
 .checkbox-label .checkbox-custom::after {
-    position: absolute;
-    content: "";
-    left: 12px;
-    top: 12px;
-    height: 0px;
-    width: 0px;
-    border-radius: 5px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(0deg) scale(0);
-    -ms-transform: rotate(0deg) scale(0);
-    transform: rotate(0deg) scale(0);
-    opacity:1;
-  	transition: all 0.3s ease-out;
-  	-webkit-transition: all 0.3s ease-out;
-  	-moz-transition: all 0.3s ease-out;
-  	-ms-transition: all 0.3s ease-out;
-  	-o-transition: all 0.3s ease-out;
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 12px;
+  height: 0px;
+  width: 0px;
+  border-radius: 5px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(0deg) scale(0);
+  -ms-transform: rotate(0deg) scale(0);
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
 }
-
 
 .checkbox-label input:checked ~ .checkbox-custom::after {
   -webkit-transform: rotate(45deg) scale(1);
   -ms-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);
-  opacity:1;
+  opacity: 1;
   left: 8px;
   top: 3px;
   width: 6px;
@@ -422,47 +466,51 @@ label {
 /* End checkbox style */
 
 @media (min-width: 320px) and (max-width: 812px) {
-    .navbar {
-        padding: .8rem .5rem;
-    }
+  .navbar {
+    padding: 0.8rem 0.5rem;
+  }
 
-    .filter-recipes {
-        width: 10rem;
-    }
+  .filter-recipes {
+    width: 10rem;
+  }
 
-    .container {
-        max-width: 95%;
-    }
+  .container {
+    width: 95%;
+  }
 
-    .recipe-info-icons {
-        font-size: .9rem;
-        margin: 0 auto;
-    }
+  .recipe-info-icons {
+    min-width: 100%;
+    font-size: 0.9rem;
+    justify-content: space-between;
+    align-self: center;
+  }
 
-    .recipe-info-icons > * {
-        padding: 0 0.8rem;
-        text-align: center;
-    }
+  .recipe-info-icons > * {
+    padding: 0;
+    text-align: center;
+  }
 
-    .input-form {
-        width: 85%;
-    }
+  .recipe-info.icons > fa {
+    font-size: 0.7rem;
+  }
 
-    .step-text {
-        width: 70%;
-    }
+  .input-form {
+    width: 85%;
+  }
+
+  .step-text {
+    width: 70%;
+  }
 }
 
 @media (min-width: 813px) and (max-width: 1200px) {
-    .container {
-        max-width: 65%;
-    }
-
+  .container {
+    width: 65%;
+  }
 }
 
 @media (min-width: 1201px) and (max-width: 4000px) {
-    .container {
-        max-width: 40rem;
-    }
-
+  .container {
+    min-width: 40rem;
+  }
 }
