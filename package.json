@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.6",
     "core-js": "^3.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.3",
     "webpack": "^4.39.2",
