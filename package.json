@@ -19,7 +19,7 @@
     "regenerator-runtime": "^0.13.3",
     "uuid": "^3.3.3",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.8.0"
   }
 }
